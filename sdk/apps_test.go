@@ -112,7 +112,7 @@ func TestAppGet(t *testing.T) {
   "appId": "c71b0a5b-7dab-41fe-b75f-7cf30246468e",
   "appType": "WEBHOOK_SMART_APP",
   "displayName": "Security Home Monitor",
-  "description": "An intergration that leverages all security devices in your home - cameras, motion sensors, etc to provide\nyou with peace of mind and #security.\n",
+  "description": "An integration that leverages all security devices in your home - cameras, motion sensors, etc to provide\nyou with peace of mind and #security.\n",
   "owner": {
     "ownerType": "USER",
     "ownerId": "3f178632-79ed-4358-94de-280dbd7c206c"
@@ -150,7 +150,7 @@ func TestAppCreate(t *testing.T) {
     "appId": "c71b0a5b-7dab-41fe-b75f-7cf30246468e",
     "appType": "WEBHOOK_SMART_APP",
     "displayName": "Security Home Monitor",
-    "description": "An intergration that leverages all security devices in your home - cameras, motion sensors, etc to provide\nyou with peace of mind and #security.\n",
+    "description": "An integration that leverages all security devices in your home - cameras, motion sensors, etc to provide\nyou with peace of mind and #security.\n",
     "owner": {
       "ownerType": "USER",
       "ownerId": "3f178632-79ed-4358-94de-280dbd7c206c"
