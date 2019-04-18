@@ -1,4 +1,5 @@
 # Smartthings Golang SDK
+image:https://travis-ci.org/vbaksa/smartthings-go-sdk?branch=master["Build Status", link="https://travis-ci.org/vbaksa/promoter"] image:https://goreportcard.com/badge/github.com/vbaksa/smartthings-go-sdk["Go Report Card", link="https://goreportcard.com/report/github.com/vbaksa/promoter"]
 
 SmartThings Golang SDK is a project to control and integrate smart home devices. It can control your home devices by interacting with https://developer.samsung.com/smartthings-api[SmarThings API]
 
