@@ -1,0 +1,118 @@
+# Smartthings Golang SDK
+
+SmartThings Golang SDK is a project to control and integrate smart home devices. It can control your home devices by interacting with https://developer.samsung.com/smartthings-api[SmarThings API]
+
+## Usage samples
+
+API is using Oauth2 Bearer Token authentication method. You can generate token by using this https://account.smartthings.com/tokens[page]
+
+### Getting device details
+
+Usage example below demonstrates how to retrieve device details and capabilities
+
+[source,golang]
+----
+client := sdk.NewClient("access-token-goes-here")
+deviceList, err := client.DevicesList()
+if err != nil {
+    panic(err)
+}
+for _, device := range deviceList.Devices {
+
+    fmt.Printf("Device name: %s \n", device.Label)
+
+    //Following code retrieves device full details
+    status, _ := client.DeviceFullStatus(device.DeviceID)
+
+    //Let check does the device supports color controls
+    if status.Component["main"].ColorControl != nil {
+        fmt.Printf("Device %s hue level is %v \n", device.Label, status.Component["main"].ColorControl.Hue)
+    }
+    //Let's check does the device supports switch capability
+    if status.Component["main"].Switch != nil {
+        fmt.Printf("Device %s Switch is %v \n", device.Label, status.Component["main"].Switch.Switch.Value)
+    }
+}
+----
+
+Code could be simplified by using SDK method _sdk.DeviceSupportsCapability_
+
+Usage example
+
+[source,golang]
+----
+client := sdk.NewClient("access-token-goes-here")
+deviceList, err := client.DevicesList()
+if err != nil {
+    panic(err)
+}
+for _, device := range deviceList.Devices {
+    if sdk.DeviceSupportsCapability(capabilities.WaterSensor, device) {
+        status, _ := client.DeviceFullStatus(device.DeviceID)
+        fmt.Printf("Water Leak Sensor %s status is %v \n", device.Label, deviceStatus.Component["main"].WaterSensor.Water.Value)
+    }
+}
+----
+
+### Controlling devices
+
+Various device capabilities and components can be controlled by using SDK. Some usage examples are below.
+
+Example: Changing color of all lights
+
+[source,golang]
+----
+client := sdk.NewClient("access-token-goes-here")
+deviceList, err := client.DevicesList()
+if err != nil {
+    panic(err)
+}
+for _, device := range deviceList.Devices {
+    if sdk.DeviceSupportsCapability(capabilities.ColorControl, device) {
+        err = client.DeviceCommand(device.DeviceID, sdk.NewColorControlHex(colors.GetRandomColorInHex()))
+        if err != nil {
+            panic(err)
+        }
+    }
+}
+----
+
+
+Example: Switching off all switches
+
+[source,golang]
+----
+client := sdk.NewClient("access-token-goes-here")
+deviceList, err := client.DevicesList()
+if err != nil {
+    panic(err)
+}
+for _, device := range deviceList.Devices {
+    if sdk.DeviceSupportsCapability(capabilities.Switch, device) {
+        err = client.DeviceCommand(device.DeviceID, sdk.NewSwitchOff())
+        if err != nil {
+            panic(err)
+        }
+    }
+}
+----
+
+Example: Issuing custom device command
+
+[source,golang]
+----
+client := sdk.NewClient("access-token-goes-here")
+//Create custom command
+command := &sdk.DeviceCommand{
+    Component:  "main",
+    Capability: "switch",
+    Command:    "on",
+    Arguments:  []map[string]interface{}{},
+}
+//issue the command
+err = client.DeviceCommand(device.DeviceID, *command)
+
+if err != nil {
+    panic(err)
+}
+----
