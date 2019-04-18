@@ -73,9 +73,9 @@ func (c *SmartThingsClient) DeviceDelete(deviceID string) error {
 func (c *SmartThingsClient) DeviceUpdateLabel(deviceID string, label string) (*Device, error) {
 
 	lbl := struct {
-		label string `json:"label"`
+		Label string `json:"label"`
 	}{
-		label: label,
+		Label: label,
 	}
 
 	req, err := c.newRequest(http.MethodPut, "/v1/devices/"+deviceID, lbl)
