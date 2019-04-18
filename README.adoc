@@ -2,11 +2,11 @@
 
 image:https://travis-ci.org/vbaksa/smartthings-go-sdk.svg?branch=master["Build Status", link="https://travis-ci.org/vbaksa/smartthings-go-sdk"] image:https://goreportcard.com/badge/github.com/vbaksa/smartthings-go-sdk["Go Report Card", link="https://goreportcard.com/report/github.com/vbaksa/smartthings-go-sdk"]
 
-SmartThings Golang SDK is a project to control and integrate smart home devices. It can control your home devices by interacting with https://developer.samsung.com/smartthings-api[SmarThings API]
+SmartThings Golang SDK gives you ability to control and integrate smart home devices programmatically. SDK controls your home devices by interacting with https://developer.samsung.com/smartthings-api[SmarThings API]
 
 ## Usage samples
 
-API is using Oauth2 Bearer Token authentication method. You can generate token by using this https://account.smartthings.com/tokens[page]
+API is using Oauth2 Bearer Token authentication method. You can generate token by using https://account.smartthings.com/tokens[Personal Token Page]
 
 ### Getting device details
 
